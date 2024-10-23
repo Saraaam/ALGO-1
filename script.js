@@ -1,43 +1,19 @@
-function analyzeSentence(sentence) {
-    
-    if (sentence[sentence.length - 1] !== '.') {
-        return "La phrase doit se terminer par un point.";
-    }
+function insertionSort(arr) {
+    // On commence avec le deuxième élément (index 1)
+    for (let i = 1; i < arr.length; i++) {
+        let key = arr[i]; // On prend l'élément à trier
+        let j = i - 1; // On commence à regarder les éléments triés
 
-    let length = 0; 
-    let wordCount = 0; 
-    let vowelCount = 0; 
-    const vowels = 'aeiouyAEIOUY'; 
-
-
-    for (let i = 0; i < sentence.length; i++) {
-        const char = sentence[i];
-        length++;
-
-
-        if (vowels.includes(char)) {
-            vowelCount++;
+        // Tant que j est valide et que l'élément à j est plus grand que key
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j]; // On déplace l'élément vers la droite
+            j--; // On passe à l'élément précédent
         }
-
-    
-        if (char === ' ') {
-        
-            if (i > 0 && sentence[i - 1] !== ' ') {
-                wordCount++;
-            }
-        }
+        arr[j + 1] = key; // On insère key à la bonne position
     }
-
-    if (length > 1) {
-        wordCount++;
-    }
-
-
-    console.log("Longueur de la phrase : " + length);
-    console.log("Nombre de mots : " + wordCount);
-    console.log("Nombre de voyelles : " + vowelCount);
+    return arr; // On retourne le tableau trié
 }
 
-
-const phrase = "Bonjour, comment ça va."; 
-analyzeSentence(phrase);
+// Exemple d'utilisation
+const array = [5, 2, 9, 1, 5, 6];
+console.log(insertionSort(array)); // Affiche [1, 2, 5, 5, 6, 9]
